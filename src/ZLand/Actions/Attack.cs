@@ -17,11 +17,11 @@ namespace ZLand.Actions
             CriticalMissChance = criticalMissChance;
         }
 
-        public double MinDamage { get; set; }
-        public double MaxDamage { get; set; }
-        public DamageType DamageType { get; set; }
-        public double CriticalHitChance { get; set; }
-        public double CriticalMissChance { get; set; }
+        public double MinDamage { get; private set; }
+        public double MaxDamage { get; private set; }
+        public DamageType DamageType { get; private set; }
+        public double CriticalHitChance { get; private set; }
+        public double CriticalMissChance { get; private set; }
 
         protected AttackResult CalculateAttackResult(Actor actor, Cell targetCell)
         {
@@ -29,13 +29,13 @@ namespace ZLand.Actions
             var range = MaxDamage - MinDamage;
             var calculatedDamage = random.NextDouble()*range + MinDamage;
             return new AttackResult
-            {
-                CalculatedDamage = calculatedDamage,
-                CriticalFailure = false, //todo
-                CriticalHit = false, //todo
-                DamageType = DamageType,
-                HitPercentage = 100, //todo
-            };
+            (
+                calculatedDamage : calculatedDamage,
+                criticalFailure : false, //todo
+                criticalHit : false, //todo
+                damageType : DamageType,
+                hitPercentage : 100 //todo
+            );
         }
     }
 }

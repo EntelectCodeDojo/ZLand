@@ -1,4 +1,5 @@
-﻿using ZLand.Actors;
+﻿using System;
+using ZLand.Actors;
 using ZLand.World;
 
 namespace ZLand.Actions
@@ -13,6 +14,7 @@ namespace ZLand.Actions
         public override void Perform(Actor initiatingActor, Cell targetCell)
         {
             //if(initiatingActor.CurrentPosition.DistanceTo(targetCell) < Cost)
+            throw new NotImplementedException();
         }
     }
 }
