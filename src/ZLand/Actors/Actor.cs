@@ -179,14 +179,14 @@ namespace ZLand.Actors
         public virtual void PerformAction(SameCellAction action)
         {
             SpendPoints(action);
-            action.Perform(this);
+            action.Apply(this);
         }
 
         public virtual void PerformAction(OtherCellAction action, Cell targetCell)
         {
             EnsureInRange(action, targetCell);
             SpendPoints(action);
-            action.Perform(this, targetCell);
+            action.Apply(this, targetCell);
         }
 
         public virtual void ApplyDamageFromAttack(AttackResult attackResult)

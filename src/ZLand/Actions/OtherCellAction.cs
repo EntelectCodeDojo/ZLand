@@ -13,6 +13,6 @@ namespace ZLand.Actions
 
         public int Range { get; set; }
 
-        public abstract void Perform(Actor initiatingActor, Cell targetCell);
+        public abstract void Apply(Actor initiatingActor, Cell targetCell);
     }
 }

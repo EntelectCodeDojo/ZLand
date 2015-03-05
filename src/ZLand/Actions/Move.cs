@@ -11,7 +11,7 @@ namespace ZLand.Actions
         {
         }
 
-        public override void Perform(Actor initiatingActor, Cell targetCell)
+        public override void Apply(Actor initiatingActor, Cell targetCell)
         {
             //if(initiatingActor.CurrentPosition.DistanceTo(targetCell) < Cost)
             throw new NotImplementedException();

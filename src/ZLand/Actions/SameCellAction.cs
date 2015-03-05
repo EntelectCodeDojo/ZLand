@@ -8,12 +8,7 @@ namespace ZLand.Actions
             : base(cost, name)
         {
         }
-
-        public virtual bool CanAffordAction(Actor actor)
-        {
-            return actor.CurrentActionPoints >= Cost;
-        }
-
-        public abstract void Perform(Actor initiatingActor);
+        
+        public abstract void Apply(Actor initiatingActor);
     }
 }
