@@ -58,7 +58,6 @@ namespace ZLand.Items
             return BaseValue * Durability;
         }
 
-
         /// <summary>
         /// Gets the calculated sales value of the item as sold by the current actor, factoring in luck and charisma.
         /// </summary>

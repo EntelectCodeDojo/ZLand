@@ -1,13 +1,14 @@
 ﻿using ZLand.Actors;
 using ZLand.DamageTypes;
+using ZLand.Services;
 using ZLand.World;
 
 namespace ZLand.Actions
 {
     public class MeleAttack : Attack
     {
-        public MeleAttack(int cost, string name, double minDamage, double maxDamage, DamageType damageType, double criticalHitChance, double criticalMissChance)
-            : base(cost, name, 1, minDamage, maxDamage, damageType, criticalHitChance, criticalMissChance)
+        public MeleAttack(int cost, string name, double minDamage, double maxDamage, DamageType damageType, double criticalHitChance, double criticalMissChance, IRandomiser randomiser)
+            : base(cost, name, 1, minDamage, maxDamage, damageType, criticalHitChance, criticalMissChance, randomiser)
         {
         }
 

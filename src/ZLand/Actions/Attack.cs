@@ -1,13 +1,14 @@
 ﻿using System;
 using ZLand.Actors;
 using ZLand.DamageTypes;
+using ZLand.Services;
 using ZLand.World;
 
 namespace ZLand.Actions
 {
     public abstract class Attack : OtherCellAction
     {
-        protected Attack(int cost, string name, int range, double minDamage, double maxDamage, DamageType damageType, double criticalHitChance, double criticalMissChance) 
+        protected Attack(int cost, string name, int range, double minDamage, double maxDamage, DamageType damageType, double criticalHitChance, double criticalMissChance, IRandomiser randomiser) 
             : base(cost, name, range)
         {
             MinDamage = minDamage;
@@ -15,6 +16,7 @@ namespace ZLand.Actions
             DamageType = damageType;
             CriticalHitChance = criticalHitChance;
             CriticalMissChance = criticalMissChance;
+            Randomiser = randomiser;
         }
 
         public double MinDamage { get; private set; }
@@ -22,12 +24,12 @@ namespace ZLand.Actions
         public DamageType DamageType { get; private set; }
         public double CriticalHitChance { get; private set; }
         public double CriticalMissChance { get; private set; }
+        public IRandomiser Randomiser { get; private set; }
 
         protected AttackResult CalculateAttackResult(Actor actor, Cell targetCell)
         {
-            var random = new Random();
             var range = MaxDamage - MinDamage;
-            var calculatedDamage = random.NextDouble()*range + MinDamage;
+            var calculatedDamage = Randomiser.Double() * range + MinDamage;
             return new AttackResult
             (
                 calculatedDamage : calculatedDamage,

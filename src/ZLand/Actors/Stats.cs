@@ -2,24 +2,43 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using ZLand.Services;
 
 namespace ZLand.Actors
 {
     public class Stats
     {
-        public Stats()
+        public INotificiationService NotificiationService { get; private set; }
+        public IRandomiser Randomiser { get; private set; }
+
+        public Stats(INotificiationService notificiationService, IRandomiser randomiser)
         {
-            Intelligence = 1;
-            Wisdom = 1;
-            Strength = 1;
-            Dexterity = 1; 
-            Constitution = 1;
-            Agility = 1;
-            Luck = 1;
-            Charisma = 1;
+            NotificiationService = notificiationService;
+            Randomiser = randomiser;
+            notificiationService.Notify("Generating stats for actor");
+            var statsPool = Randomiser.RandomInt(100, 160);
+            notificiationService.Notify(string.Format("StatsPool: {0}", statsPool));
+            var randomStats = randomiser.RandomIntArray(1, 20, statsPool);
+            Intelligence = randomStats[0];
+            notificiationService.Notify(string.Format("Intelligence: {0}", Intelligence));
+            Wisdom = randomStats[1];
+            notificiationService.Notify(string.Format("Wisdom: {0}", Wisdom));
+            Strength = randomStats[2];
+            notificiationService.Notify(string.Format("Strength: {0}", Strength));
+            Dexterity = randomStats[3];
+            notificiationService.Notify(string.Format("Dexterity: {0}", Dexterity));
+            Constitution = randomStats[4];
+            notificiationService.Notify(string.Format("Constitution: {0}", Constitution));
+            Agility = randomStats[5];
+            notificiationService.Notify(string.Format("Agility: {0}", Agility));
+            Luck = randomStats[6];
+            notificiationService.Notify(string.Format("Luck: {0}", Luck));
+            Charisma = randomStats[7];
+            notificiationService.Notify(string.Format("Charisma: {0}", Charisma));
         }
 
-        public Stats(int intelligence, int wisdom, int dexterity, int strength, int constitution, int agility, int luck, int charisma)
+
+        public Stats(int intelligence, int wisdom, int dexterity, int strength, int constitution, int agility, int luck, int charisma, INotificiationService notificiationService, IRandomiser randomiser)
         {
             var sum = intelligence + wisdom + dexterity + strength + constitution + agility + luck + charisma;
             if (sum > 8)
@@ -34,6 +53,8 @@ namespace ZLand.Actors
             Agility = agility;
             Luck = luck;
             Charisma = charisma;
+            NotificiationService = notificiationService;
+            Randomiser = randomiser;
             Validate();
         }
 
@@ -67,7 +88,9 @@ namespace ZLand.Actors
 
         public LuckRoll MakeLuckRoll()
         {
-            return (LuckRoll) new Random().Next(0, 2);
+            var luckRoll = (LuckRoll) Randomiser.RandomInt(0, 2);
+            NotificiationService.Notify(string.Format("LuckRoll value : {0}", luckRoll));
+            return luckRoll;
         }
     }
 }
