@@ -1,5 +1,5 @@
 ﻿using System;
-//using ZLand.Actors;
+using ZLand.Actors;
 
 namespace ZLand.World
 {
@@ -22,7 +22,7 @@ namespace ZLand.World
             YValue = yValue;
         }
 
-        //public Actor Actor { get; set; }
+        public Actor Actor { get; set; }
 
         /// <summary>
         /// Calculates the distances from this cell to the target cell, allowing for diagonal moves.
