@@ -14,7 +14,7 @@ namespace ZLand.Actors
     /// </summary>
     public abstract class Actor
     {
-        protected Actor(int actionPointsPerTurn, Cell currentPosition, int baseMoveSpeed, Stats stats, int maxHealth, double maximumWeight)
+        protected Actor(int actionPointsPerTurn, Cell currentPosition, int baseMoveSpeed, Stats stats, int maxHealth, double maximumWeight, string name)
         {
             if (actionPointsPerTurn < 1)
             {
@@ -48,6 +48,7 @@ namespace ZLand.Actors
                 throw new ArgumentException("MaximumWeight cannot be less than 0");
             }
             MaximumWeight = maximumWeight;
+            Name = name;
             EncumberedWeight = MaximumWeight*0.75;
             IsAlive = true;
             Actions = new List<Action>();
@@ -147,51 +148,44 @@ namespace ZLand.Actors
         /// </summary>
         public double EncumberedWeight { get; private set; }
 
-        protected void EnsureHasEnoughPoints(Action action)
-        {
-            if (CurrentActionPoints < action.Cost)
-            {
-                throw new NotEnoughActionPointsException();
-            }
-        }
-
-        protected virtual void EnsureInRange(OtherCellAction action, Cell targetCell)
-        {
-            if (!IsInRange(action, targetCell))
-            {
-                throw new NotInRangeException();
-            }
-        }
-
-        public virtual bool IsInRange(OtherCellAction action, Cell targetCell)
-        {
-            var distance = CurrentPosition.DistanceTo(targetCell);
-            return distance <= action.Range;
-        }
-
-        protected void SpendPoints(Action action)
-        {
-            EnsureHasEnoughPoints(action);
-            CurrentActionPoints -= action.Cost;
-        }
+        /// <summary>
+        /// Gets the display name.
+        /// </summary>
+        public string Name { get; private set; }
 
 
         public virtual void PerformAction(SameCellAction action)
         {
-            SpendPoints(action);
             action.Apply(this);
         }
 
         public virtual void PerformAction(OtherCellAction action, Cell targetCell)
         {
-            EnsureInRange(action, targetCell);
-            SpendPoints(action);
             action.Apply(this, targetCell);
+        }
+
+        public void SpendActionPoints(int pointsToSpend)
+        {
+            if (pointsToSpend < 0)
+            {
+                throw new ArgumentException("Cannot spend a negative amount of Action Points");
+            }
+            if (CurrentActionPoints < pointsToSpend)
+            {
+                throw new NotEnoughActionPointsException(CurrentActionPoints, pointsToSpend);
+            }
+            CurrentActionPoints -= pointsToSpend;
         }
 
         public virtual void ApplyDamageFromAttack(AttackResult attackResult)
         {
             throw new System.NotImplementedException();
+        }
+
+        public int CurrentSpeed()
+        {
+            //todo figure out the actors current speed based on modifiers, buffs, armor, if encumbered, etc
+            return BaseMoveSpeed;
         }
     }
 }

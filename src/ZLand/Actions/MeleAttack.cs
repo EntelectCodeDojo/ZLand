@@ -7,8 +7,8 @@ namespace ZLand.Actions
 {
     public class MeleAttack : Attack
     {
-        public MeleAttack(int cost, string name, double minDamage, double maxDamage, DamageType damageType, double criticalHitChance, double criticalMissChance, IRandomiser randomiser)
-            : base(cost, name, 1, minDamage, maxDamage, damageType, criticalHitChance, criticalMissChance, randomiser)
+        public MeleAttack(int baseCost, string name, double minDamage, double maxDamage, DamageType damageType, double criticalHitChance, double criticalMissChance, IRandomiser randomiser)
+            : base(baseCost, name, 1, minDamage, maxDamage, damageType, criticalHitChance, criticalMissChance, randomiser)
         {
         }
 

@@ -8,8 +8,8 @@ namespace ZLand.Actions
 {
     public abstract class Attack : OtherCellAction
     {
-        protected Attack(int cost, string name, int range, double minDamage, double maxDamage, DamageType damageType, double criticalHitChance, double criticalMissChance, IRandomiser randomiser) 
-            : base(cost, name, range)
+        protected Attack(int baseCost, string name, int range, double minDamage, double maxDamage, DamageType damageType, double criticalHitChance, double criticalMissChance, IRandomiser randomiser) 
+            : base(baseCost, name, range)
         {
             MinDamage = minDamage;
             MaxDamage = maxDamage;

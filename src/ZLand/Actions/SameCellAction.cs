@@ -4,11 +4,22 @@ namespace ZLand.Actions
 {
     public abstract class SameCellAction : Action
     {
-        protected SameCellAction(int cost, string name)
-            : base(cost, name)
+        protected SameCellAction(int baseCost, string name)
+            : base(baseCost, name)
         {
         }
-        
-        public abstract void Apply(Actor initiatingActor);
+
+        public virtual int GetPointsCost()
+        {
+            return BaseCost;
+        }
+
+        public virtual void Apply(Actor initiatingActor)
+        {
+            var cost = GetPointsCost();
+            EnsureHasEnoughPoints(initiatingActor, cost);
+            initiatingActor.SpendActionPoints(cost);
+        }
+
     }
 }
