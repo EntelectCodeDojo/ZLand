@@ -55,6 +55,7 @@
     <Compile Include="World\CellTests.cs" />
     <Compile Include="World\GameTests.cs" />
     <Compile Include="World\MapTests.cs" />
+    <Compile Include="World\PersistanceFake.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ZLand\ZLand.csproj">

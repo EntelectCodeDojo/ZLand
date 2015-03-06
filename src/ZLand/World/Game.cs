@@ -4,8 +4,11 @@ namespace ZLand.World
 {
     public class Game
     {
-        public Game(Map map, int? maxTurns= null)
+        private readonly IPersistanceService _persistanceService;
+
+        public Game(Map map, IPersistanceService persistanceService, int? maxTurns = null)
         {
+            _persistanceService = persistanceService;
             if (map == null)
             {
                 throw new ArgumentNullException("map", "Map cannot be null");
@@ -18,5 +21,10 @@ namespace ZLand.World
         public int CurrentTurn { get; private set; }
         public int? MaxTurns { get; private set; }
         public Map Map { get; private set; }
+
+        public void Save()
+        {
+            _persistanceService.Save(this);
+        }
     }
 }

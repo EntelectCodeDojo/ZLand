@@ -80,6 +80,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="World\Game.cs" />
+    <Compile Include="World\IPersistanceService.cs" />
     <Compile Include="World\Map.cs">
       <SubType>Code</SubType>
     </Compile>
