@@ -56,7 +56,7 @@ namespace ZLand.Tests.World
             var persistanceMock = new Mock<IPersistanceService>();
             var game = new Game(new Map(5, 5), persistanceMock.Object);
             persistanceMock.Setup(persistanceService => persistanceService.Save(It.IsAny<Game>()))
-                .Callback<Game>(passedInGame => Assert.NotNull(passedInGame));
+                .Callback<Game>(passedInGame => Assert.AreSame(game, passedInGame));
             game.Save();
         }
     }

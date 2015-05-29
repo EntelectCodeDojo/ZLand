@@ -28,8 +28,8 @@ namespace ZLand.Actions
 
         protected AttackResult CalculateAttackResult(Actor actor, Cell targetCell)
         {
-            var range = MaxDamage - MinDamage;
-            var calculatedDamage = Randomiser.Double() * range + MinDamage;
+            var damageRange = MaxDamage - MinDamage;
+            var calculatedDamage = Randomiser.Double() * damageRange + MinDamage;
             return new AttackResult
             (
                 calculatedDamage : calculatedDamage,
