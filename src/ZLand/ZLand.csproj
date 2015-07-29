@@ -63,6 +63,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Services\BasicRandomiser.cs" />
+    <Compile Include="Services\ConsoleNotificationService.cs" />
     <Compile Include="Services\INotificiationService.cs" />
     <Compile Include="Actors\LuckRoll.cs" />
     <Compile Include="Actors\Stats.cs">

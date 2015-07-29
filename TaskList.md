@@ -16,7 +16,10 @@ Items confer abilities onto the actor, such as attack.
 2. Now that the method populates all the items in the array, it is producing the same random value for every item in the array.
 2. Now that the method produces different random values for each item in the array, we are finding that the sum of those integers is sometimes greater than the supplied itemValueSum parameter
 
+##Stats Class##
+1.For some reaosn this class always throws a validation exception when created saying that the "Sum of stats cannot be greater than 160". This should only happen if the stats are actually greater than 160
 
+##Sandbox Tasks##
 
 1. When performing an action both in the same cell and in another cell, ensure the actor has enough points to do so
 2. When performing an action on a cell that is different from the one the current actor is in, ensure that the cell is within range for the cell
