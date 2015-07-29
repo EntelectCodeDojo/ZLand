@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using ZLand.Actions;
 using ZLand.Actors;
+using ZLand.Services;
 using ZLand.World;
 
 namespace ZLand.Tests.Actions
@@ -14,7 +15,7 @@ namespace ZLand.Tests.Actions
         [SetUp]
         public void Intialise()
         {
-            var notificationService = new FakeNotificationService();
+            var notificationService = new ConsoleNotificationService();
             var randomiser = new BasicRandomiser();
             _stats = new Stats(notificationService, randomiser);
         }

@@ -6,7 +6,7 @@ using ZLand.Services;
 
 namespace ZLand.Actors
 {
-    public class Stats
+    public class Stats : IValidatableObject
     {
         public INotificiationService NotificiationService { get; private set; }
         public IRandomiser Randomiser { get; private set; }
@@ -18,7 +18,7 @@ namespace ZLand.Actors
             notificiationService.Notify("Generating stats for actor");
             var statsPool = Randomiser.RandomInt(100, 160);
             notificiationService.Notify(string.Format("StatsPool: {0}", statsPool));
-            var randomStats = randomiser.RandomIntArray(1, 20, statsPool);
+            var randomStats = randomiser.RandomIntArray(1, 20, statsPool, 8);
             Intelligence = randomStats[0];
             notificiationService.Notify(string.Format("Intelligence: {0}", Intelligence));
             Wisdom = randomStats[1];
@@ -35,16 +35,12 @@ namespace ZLand.Actors
             notificiationService.Notify(string.Format("Luck: {0}", Luck));
             Charisma = randomStats[7];
             notificiationService.Notify(string.Format("Charisma: {0}", Charisma));
+            ValidateAndThrowExceptionIfErrors();
         }
 
 
         public Stats(int intelligence, int wisdom, int dexterity, int strength, int constitution, int agility, int luck, int charisma, INotificiationService notificiationService, IRandomiser randomiser)
         {
-            var sum = intelligence + wisdom + dexterity + strength + constitution + agility + luck + charisma;
-            if (sum > 8)
-            {
-                throw new ArgumentException("Sum of stats cannot be greater than 160");
-            }
             Intelligence = intelligence;
             Wisdom = wisdom;
             Dexterity = dexterity;
@@ -55,18 +51,36 @@ namespace ZLand.Actors
             Charisma = charisma;
             NotificiationService = notificiationService;
             Randomiser = randomiser;
-            Validate();
+            ValidateAndThrowExceptionIfErrors();
         }
 
-        private void Validate()
+        public void ValidateAndThrowExceptionIfErrors()
         {
-            var results = new List<ValidationResult>();
-            Validator.TryValidateObject(this, new ValidationContext(this, null, null), results, true);
+            var context = new ValidationContext(this, null, null);
+            var results = Validate(context).ToList();
             if (results.Any())
             {
                 var joinedErrorMessage = string.Join(",", results.Select(result => result.ErrorMessage));
                 throw new ValidationException(joinedErrorMessage);
             }
+        }
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            var results = new List<ValidationResult>();
+            Validator.TryValidateObject(this, validationContext, results, true);
+            results.AddRange(DoCustomValidation());
+            return results;
+        }
+
+        private IEnumerable<ValidationResult> DoCustomValidation()
+        {
+            var results = new List<ValidationResult>();
+            var sum = Intelligence + Wisdom + Dexterity + Strength + Constitution + Agility + Luck + Charisma;
+            if (sum > 1)
+            {
+                results.Add(new ValidationResult("Sum of stats cannot be greater than 160"));
+            }
+            return results;
         }
 
         [Range(1,20)]
