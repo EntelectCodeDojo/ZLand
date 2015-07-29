@@ -3,7 +3,7 @@
     public interface IRandomiser
     {
         int RandomInt(int min, int max);
-        int[] RandomIntArray(int minValuePerItem, int maxValuePerItem, int itemValueSum);
+        int[] RandomIntArray(int minValuePerItem, int maxValuePerItem, int itemValueSum, int arraySize);
         /// <summary>
         /// Returns a random number between 0.0 and 1.0.
         /// </summary>

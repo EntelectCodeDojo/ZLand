@@ -62,6 +62,7 @@
     <Compile Include="Actors\Zombie.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Services\BasicRandomiser.cs" />
     <Compile Include="Services\INotificiationService.cs" />
     <Compile Include="Actors\LuckRoll.cs" />
     <Compile Include="Actors\Stats.cs">

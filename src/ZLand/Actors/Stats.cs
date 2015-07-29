@@ -18,7 +18,7 @@ namespace ZLand.Actors
             notificiationService.Notify("Generating stats for actor");
             var statsPool = Randomiser.RandomInt(100, 160);
             notificiationService.Notify(string.Format("StatsPool: {0}", statsPool));
-            var randomStats = randomiser.RandomIntArray(1, 20, statsPool);
+            var randomStats = randomiser.RandomIntArray(1, 20, statsPool, 8);
             Intelligence = randomStats[0];
             notificiationService.Notify(string.Format("Intelligence: {0}", Intelligence));
             Wisdom = randomStats[1];

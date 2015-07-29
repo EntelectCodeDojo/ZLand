@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using ZLand.Actions;
 using ZLand.Actors;
+using ZLand.Services;
 using ZLand.World;
 
 namespace ZLand.Tests.Actions

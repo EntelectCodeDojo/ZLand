@@ -6,6 +6,11 @@ These actors can perform various actions, either on their own cell or on another
 Actors can be equipped with items.
 Items confer abilities onto the actor, such as attack.
 
+The BasicRadomiser class has a few bugs, you need to write some unit tests to reproduce them and then fix the bugs to cause the tests to pass
+1. 
+
+
+
 1. When performing an action both in the same cell and in another cell, ensure the actor has enough points to do so
 2. When performing an action on a cell that is different from the one the current actor is in, ensure that the cell is within range for the cell
 3. An actor cannot perform the move action on the cell they are already in
