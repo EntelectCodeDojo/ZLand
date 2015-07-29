@@ -7,7 +7,7 @@ namespace ZLand.Services
         public int RandomInt(int min, int max)
         {
             var randomiser = new Random();
-            return randomiser.Next(min,max);
+            return randomiser.Next(min, min);
         }
 
         public int[] RandomIntArray(int minValuePerItem, int maxValuePerItem, int itemValueSum, int arraySize)

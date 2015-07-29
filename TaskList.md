@@ -6,8 +6,15 @@ These actors can perform various actions, either on their own cell or on another
 Actors can be equipped with items.
 Items confer abilities onto the actor, such as attack.
 
-The BasicRadomiser class has a few bugs, you need to write some unit tests to reproduce them and then fix the bugs to cause the tests to pass
-1. 
+## The BasicRadomiser class ##
+ This class has a few bugs, you need to write some unit tests to reproduce them and then fix the bugs to cause the tests to pass. Please do these in the provided order order and work on them one at a time.
+
+###RandomInt Method ###
+1. This method seems to always generate a value equal to the minimium value
+### RandomIntArray Method: ###
+1. The method produces a random value for the first item in the array but the rest are 0.
+2. Now that the method populates all the items in the array, it is producing the same random value for every item in the array.
+2. Now that the method produces different random values for each item in the array, we are finding that the sum of those integers is sometimes greater than the supplied itemValueSum parameter
 
 
 
