@@ -15,7 +15,7 @@ namespace ZLand.Tests.Actions
         [SetUp]
         public void Intialise()
         {
-            var notificationService = new FakeNotificationService();
+            var notificationService = new ConsoleNotificationService();
             var randomiser = new BasicRandomiser();
             _stats = new Stats(notificationService, randomiser);
         }
