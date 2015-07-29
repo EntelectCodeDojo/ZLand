@@ -1,5 +1,6 @@
 ﻿using System;
 using NUnit.Framework;
+using ZLand.Items;
 using ZLand.World;
 
 namespace ZLand.Tests.World
