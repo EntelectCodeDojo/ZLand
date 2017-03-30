@@ -6,11 +6,26 @@ These actors can perform various actions, either on their own cell or on another
 Actors can be equipped with items.
 Items confer abilities onto the actor, such as attack.
 
-## The BasicRadomiser class ##
+## Some basic TDD
+Implement the following features by writing the unit test first:
+
+1. We would like to be able to advance the game by ending our turn. The acceptance criteria are as follows:
+	* When we call end turn, the `CurrentTurn` value should increase by 1
+	* If the new `CurrentTurn` value is greater than the `MaxTurns` then the game should end.
+	* When advancing the game, if `AutoSave` is true, the game should be saved. 
+		* `AutoSave` should be a value that we can set when creating a game
+		* The `AutoSave` value should be changable during a game.
+2. Ending the game - When we end the game, we would like to calculate the players score.
+	1. If the player is still alive on the map, he gets 500 points.
+	2. For every dead actor on the map, the player gets 100 points.
+	3. For every alive actor on the map, the player looses 50 points.
+
+## The BasicRadomiser class - Bug fixes! ##
  This class has a few bugs, you need to write some unit tests to reproduce them and then fix the bugs to cause the tests to pass. Please do these in the provided order order and work on them one at a time.
 
 ###RandomInt Method ###
 1. This method seems to always generate a value equal to the minimium value
+
 ### RandomIntArray Method: ###
 1. The method produces a random value for the first item in the array but the rest are 0.
 2. Now that the method populates all the items in the array, it is producing the same random value for every item in the array.
