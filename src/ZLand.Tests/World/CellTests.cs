@@ -19,21 +19,19 @@ namespace ZLand.Tests.World
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentException))]
         public void WhenCreatingACell_ThenTheXValueCannotBeLessThan0()
         {
             const int x = -1;
             const int y = 5;
-            new Cell(x, y);
+            Assert.Throws<ArgumentException>(() => new Cell(x, y));
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentException))]
         public void WhenCreatingACell_ThenTheYValueCannotBeLessThan0()
         {
             const int x = 5;
             const int y = -1;
-            new Cell(x, y);
+            Assert.Throws<ArgumentException>(() => new Cell(x, y));
         }
 
         [TestCase(0, 0, 0, 0, 0)]

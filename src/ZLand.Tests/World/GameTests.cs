@@ -18,11 +18,10 @@ namespace ZLand.Tests.World
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void GivenAMapThatIsNull_WhenICreateANewGame_ThenItShouldThrowAnError()
         {
             Map map = null;
-            new Game(map, new PersistanceFake());
+            Assert.Throws<ArgumentNullException>(() => new Game(map, new PersistanceFake()));
         }
 
         [Test]
